@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.UnitTests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.Services", "Music.Library.Services\Music.Library.Services.csproj", "{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.Common", "Music.Library.Common\Music.Library.Common.csproj", "{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.Core", "Music.Library.Core\Music.Library.Core.csproj", "{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

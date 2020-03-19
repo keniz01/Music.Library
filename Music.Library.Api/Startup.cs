@@ -30,7 +30,7 @@ namespace Music.Library.Api
                 endpoints.MapControllers();
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Api listening for  requests.");
+                    await context.Response.WriteAsync("Api listening for requests.");
                 });
             });
         }

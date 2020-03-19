@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Music.Library.Api.Controllers;
-using Music.Library.Common;
+using Music.Library.Core.Models;
 using Music.Library.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;

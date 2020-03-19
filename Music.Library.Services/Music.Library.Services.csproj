@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Music.Library.Common\Music.Library.Common.csproj" />
+    <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
   </ItemGroup>
 
 </Project>

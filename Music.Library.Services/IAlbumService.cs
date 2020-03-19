@@ -1,5 +1,4 @@
-﻿using Music.Library.Common;
-using System;
+﻿using Music.Library.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -9,7 +9,8 @@ namespace Music.Library.Core.Services
         /// <summary>
         /// Gets the most recent 10 albums.
         /// </summary>
+        /// <param name="query">The search string.</param>
         /// <returns>A list of 10 albums</returns>
-        Task<List<AlbumResult>> GetMostRecentTenAlbumsAsync();
+        Task<List<AlbumResult>> FindAlbumsAsync(string query);
     }
 }

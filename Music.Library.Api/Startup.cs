@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Music.Library.Core.Services;
+using Music.Library.Services;
 
 namespace Music.Library.Api
 {
@@ -13,6 +15,7 @@ namespace Music.Library.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IAlbumService, AlbumService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -14,11 +14,11 @@ namespace Music.Library.Api.Controllers
             _albumService = albumService;
         }
 
-        [Route("")]
-        public async Task<IActionResult> Index()
+        [Route("{query}")]
+        public async Task<IActionResult> FindAlbums(string query)
         {
-            var latestTenAlbums = await _albumService.GetMostRecentTenAlbumsAsync();
-            return Json(latestTenAlbums);
+            var albums = await _albumService.FindAlbumsAsync(query).ConfigureAwait(false);
+            return Json(albums);
         }
     }
 }

@@ -11,8 +11,9 @@ namespace Music.Library.Services
         /// <summary>
         /// Gets the most recent 10 albums.
         /// </summary>
+        /// <param name="query">The search query.</param>
         /// <returns>A list of 10 albums</returns>
-        public Task<List<AlbumResult>> GetMostRecentTenAlbumsAsync()
+        public Task<List<AlbumResult>> FindAlbumsAsync(string query)
         {
             throw new NotImplementedException();
         }

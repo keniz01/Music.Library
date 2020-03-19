@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Music.Library.Api\Music.Library.Api.csproj" />
+    <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
   </ItemGroup>
 
 </Project>

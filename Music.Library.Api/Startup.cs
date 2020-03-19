@@ -1,10 +1,12 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Music.Library.Core.Services;
-using Music.Library.Services;
+using Music.Library.Core.Features.FindAlbums;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Music.Library.Api
 {
@@ -15,7 +17,8 @@ namespace Music.Library.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IAlbumService, AlbumService>();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            services.AddScoped<IRequestHandler<FindAlbumRequest, List<FindAlbumResponse>>, FindAlbumRequestHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Music.Library.Core.Services;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Music.Library.Core.Features.FindAlbums;
 using System.Threading.Tasks;
 
 namespace Music.Library.Api.Controllers
@@ -8,16 +9,16 @@ namespace Music.Library.Api.Controllers
     [Route("{controller}")]
     public class SearchController : Controller
     {
-        private readonly IAlbumService _albumService;
-        public SearchController(IAlbumService albumService)
+        private readonly IMediator _mediator;
+        public SearchController(IMediator mediator)
         {
-            _albumService = albumService;
+            _mediator = mediator;
         }
 
         [Route("{query}")]
         public async Task<IActionResult> FindAlbums(string query)
         {
-            var albums = await _albumService.FindAlbumsAsync(query).ConfigureAwait(false);
+            var albums = await _mediator.Send(new FindAlbumRequest(query));
             return Json(albums);
         }
     }

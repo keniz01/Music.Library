@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Music.Library.Core.Features.FindAlbums;
+using Music.Library.Core.Repositories;
+using Music.Library.Repositories;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -18,6 +20,7 @@ namespace Music.Library.Api
         {
             services.AddControllers();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            services.AddScoped<ISearchRepository, SearchRepository>();
             services.AddScoped<IRequestHandler<FindAlbumRequest, List<FindAlbumResponse>>, FindAlbumRequestHandler>();
         }
 

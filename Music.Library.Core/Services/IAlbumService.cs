@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Music.Library.Services
+namespace Music.Library.Core.Services
 {
     public interface IAlbumService
     {

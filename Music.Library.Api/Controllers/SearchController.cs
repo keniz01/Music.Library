@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Music.Library.Services;
+using Music.Library.Core.Services;
 using System.Threading.Tasks;
 
 namespace Music.Library.Api.Controllers

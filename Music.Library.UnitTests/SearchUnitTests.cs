@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Music.Library.Api.Controllers;
 using Music.Library.Core.Models;
+using Music.Library.Core.Services;
 using Music.Library.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -9,11 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Client", "Mus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.UnitTests", "Music.Library.UnitTests\Music.Library.UnitTests.csproj", "{22821702-89B5-4C82-8B1B-0FFF21B796CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Services", "Music.Library.Services\Music.Library.Services.csproj", "{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Core", "Music.Library.Core\Music.Library.Core.csproj", "{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.Core", "Music.Library.Core\Music.Library.Core.csproj", "{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Repositories", "Music.Library.Repositories\Music.Library.Repositories.csproj", "{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Library.Repositories", "Music.Library.Repositories\Music.Library.Repositories.csproj", "{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E7E21A31-3A1D-48BC-8A52-4F566F026F2F}"
+	ProjectSection(SolutionItems) = preProject
+		music_database.sql = music_database.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +36,6 @@ Global
 		{22821702-89B5-4C82-8B1B-0FFF21B796CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22821702-89B5-4C82-8B1B-0FFF21B796CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22821702-89B5-4C82-8B1B-0FFF21B796CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31C11BCA-DD61-4910-8C3F-8ADBF5DA5C9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD3FB9B8-43FA-4CB6-A189-8FA86C678BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU

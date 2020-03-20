@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Music.Library.Core.Features.FindAlbums
 {
-    public class FindAlbumRequestHandler : IRequestHandler<FindAlbumRequest, List<FindAlbumResponse>>
+    public class FindAlbumRequestHandler : IRequestHandler<FindAlbumRequest, FindAlbumResponse>
     {
         private readonly ISearchRepository _searchRepository;
         public FindAlbumRequestHandler(ISearchRepository searchRepository)
@@ -15,9 +15,9 @@ namespace Music.Library.Core.Features.FindAlbums
             _searchRepository = searchRepository;
         }
 
-        public async Task<List<FindAlbumResponse>> Handle(FindAlbumRequest request, CancellationToken cancellationToken)
+        public async Task<FindAlbumResponse> Handle(FindAlbumRequest request, CancellationToken cancellationToken)
         {
-            return await _searchRepository.FindAlbumsAsync(request.Query);
+            return await _searchRepository.FindAlbumsAsync(request.Query, request.PageNumber, request.PageSize, cancellationToken);
         }
     }
 }

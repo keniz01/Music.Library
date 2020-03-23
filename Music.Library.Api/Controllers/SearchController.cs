@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Music.Library.Api.Controllers
 {
     [ApiController]
-    [Route("{controller}")]
+    [Route("[controller]")]
     public class SearchController : Controller
     {
         private readonly IMediator _mediator;

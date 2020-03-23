@@ -1,0 +1,3 @@
+The Api and Client have each got separate app pools.
+Both app pools use LocalSystem account for Identity
+The database server security is mapped to NT AUTHORITY\SYSTEM with public and db_owner permissions on the database under User Mapping

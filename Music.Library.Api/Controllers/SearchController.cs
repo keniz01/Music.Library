@@ -1,27 +1,24 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Music.Library.Core.Features.FindAlbums;
+using Music.Library.Core.Features.Search;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Music.Library.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class SearchController : Controller
     {
         private readonly IMediator _mediator;
-        public SearchController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        public SearchController(IMediator mediator) => _mediator = mediator;
 
         [Route("{query}/{pageNumber}/{pageSize}")]
         public async Task<IActionResult> FindAlbums(string query, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var albums = await _mediator.Send
+            GetAlbumsResponse albums = await _mediator.Send
             (
-                new FindAlbumRequest(query, pageNumber, pageSize), 
+                new GetAlbumsRequest(query, pageNumber, pageSize), 
                 cancellationToken
             ).ConfigureAwait(false);
 

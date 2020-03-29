@@ -12,10 +12,9 @@
     }
   },
   "profiles": {
-    "IIS": {
-      "commandName": "IIS",
+    "IIS Express": {
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://localhost/api",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

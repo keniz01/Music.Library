@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Music.Library.Core.Models;
 
 namespace Music.Library.Repositories
 {
@@ -9,13 +8,23 @@ namespace Music.Library.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FindAlbumsData>().Property(p => p.Duration).HasColumnName("AlbumDuration");
-            modelBuilder.Entity<FindAlbumsData>().Property(p => p.Title).HasColumnName("AlbumTitle");
-            modelBuilder.Entity<FindAlbumsData>().Property(p => p.ReleaseYear).HasColumnName("AlbumYear");
-            modelBuilder.Entity<FindAlbumsData>().HasNoKey();
+            //TODO: Move to configuration file.
+            modelBuilder.Entity<GetAlbumData>( p =>
+            {
+                p.Property(m => m.Duration).HasColumnName("AlbumDuration");
+                p.Property(m => m.Title).HasColumnName("AlbumTitle");
+                p.Property(m => m.ReleaseYear).HasColumnName("AlbumYear");
+                p.Property(m => m.AlbumId);
+                p.Property(m => m.ArtistId);
+                p.Property(m => m.ArtistName);
+                p.Property(m => m.Labels);
+                p.Property(m => m.Genres);
+                p.HasNoKey();
+             });
+
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<FindAlbumsData> Albums { get; set; }
+        public DbSet<GetAlbumData> Albums { get; set; }
     }
 }

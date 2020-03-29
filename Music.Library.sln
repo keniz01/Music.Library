@@ -11,13 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Core", "Music
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Repositories", "Music.Library.Repositories\Music.Library.Repositories.csproj", "{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E7E21A31-3A1D-48BC-8A52-4F566F026F2F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53CDF02D-79F3-4DE6-A826-9499ED7050F8}"
 	ProjectSection(SolutionItems) = preProject
-		music_database.sql = music_database.sql
+		.editorconfig = .editorconfig
+		music_database_generator.sql = music_database_generator.sql
 		Notes.txt = Notes.txt
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Library.Web", "Muisc.Library.Web\Music.Library.Web.csproj", "{0504EE15-0B24-4B4C-812D-483A2884BAEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +40,6 @@ Global
 		{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3656E08D-3CE8-4A76-B07F-C9C1CAE82E40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0504EE15-0B24-4B4C-812D-483A2884BAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0504EE15-0B24-4B4C-812D-483A2884BAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0504EE15-0B24-4B4C-812D-483A2884BAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0504EE15-0B24-4B4C-812D-483A2884BAEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

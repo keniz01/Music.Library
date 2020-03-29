@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Music.Library.Api.Controllers;
-using Music.Library.Core.Features.FindAlbums;
+using Music.Library.Core.Features.Search;
 using Music.Library.Core.Models;
 using System.Collections.Generic;
 using System.Threading;
@@ -15,62 +15,64 @@ namespace Music.Library.UnitTests
     public class SearchUnitTests
     {
         [TestMethod]
-        public async Task FindAlbums_Should_return_a_list_of_atleast_one_albums()
+        public async Task GetAlbumsShouldReturnAListOfAtleastOneAlbums()
         {
             //Arrange
-            var albums = new List<FindAlbumsData>
+            List<GetAlbumResult> albums = new List<GetAlbumResult>
             {
-                new FindAlbumsData{ AlbumId = 1, ArtistName = "Beenie Man", Title = "The Doctor" },
-                new FindAlbumsData{ AlbumId = 2, ArtistName = "Bob Marley", Title = "Soul Rebel" },
-                new FindAlbumsData{ AlbumId = 3, ArtistName = "Bob Marley", Title = "Soul Revolution" },
-                new FindAlbumsData{ AlbumId = 4, ArtistName = "Bob Marley", Title = "Catch A Fire" }
+                new GetAlbumResult( 1, "Beenie Man", null, null, "The Doctor", null, null, null),
+                new GetAlbumResult( 1, "Bob Marley", null, null, "Soul Rebel", null, null, null),
+                new GetAlbumResult( 1, "Bob Marley", null, null, "Soul Revolution", null, null, null),
+                new GetAlbumResult( 1, "Bob Marley", null, null, "Catch A Fire", null, null, null)
             };
 
-            var fakeMediator = new Mock<IMediator>(MockBehavior.Strict);
-            fakeMediator.Setup(mediator => mediator.Send(It.IsAny<FindAlbumRequest>(), default))
-                .ReturnsAsync(new FindAlbumResponse(albums));
+            Mock<IMediator> fakeMediator = new Mock<IMediator>(MockBehavior.Strict);
+            fakeMediator.Setup(mediator => mediator.Send(It.IsAny<GetAlbumsRequest>(), default))
+                .ReturnsAsync(new GetAlbumsResponse(albums));
 
-            SearchController controller = new SearchController(fakeMediator.Object);
+            using(SearchController controller = new SearchController(fakeMediator.Object))
+            {
+                //Act
+                OkObjectResult result = await controller
+                    .FindAlbums
+                    (
+                        It.IsAny<string>(),
+                        It.IsAny<int>(),
+                        It.IsAny<int>(),
+                        It.IsAny<CancellationToken>()
+                    )
+                    .ConfigureAwait(false) as OkObjectResult;
+                GetAlbumsResponse response = result.Value as GetAlbumsResponse;
 
-            //Act
-            var result = await controller
-                .FindAlbums
-                (
-                    It.IsAny<string>(),
-                    It.IsAny<int>(),
-                    It.IsAny<int>(),
-                    It.IsAny<CancellationToken>()
-                )
-                .ConfigureAwait(false) as OkObjectResult;
-            var response = result.Value as FindAlbumResponse;
-
-            //Assert
-            Assert.IsTrue(response.Albums.Count > 0, "There are no albums.");
+                //Assert
+                Assert.IsTrue(response.Albums.Count > 0, "There are no albums.");
+            }
         }
 
         [TestMethod]
-        public async Task FindAlbums_Should_return_result_of_type_JsonResult()
+        public async Task GetAlbumsShouldReturnResultOfTypeJsonResult()
         {
             //Arrange
-            var fakeMediator = new Mock<IMediator>(MockBehavior.Strict);
-            fakeMediator.Setup(mediator => mediator.Send(It.IsAny<FindAlbumRequest>(), default))
-                .ReturnsAsync(It.IsAny<FindAlbumResponse>);
+            Mock<IMediator> fakeMediator = new Mock<IMediator>(MockBehavior.Strict);
+            fakeMediator.Setup(mediator => mediator.Send(It.IsAny<GetAlbumsRequest>(), default))
+                .ReturnsAsync(It.IsAny<GetAlbumsResponse>);
 
-            SearchController controller = new SearchController(fakeMediator.Object);
+            using(SearchController controller = new SearchController(fakeMediator.Object))
+            {
+                //Act
+                IActionResult result = await controller
+                    .FindAlbums
+                    (
+                        It.IsAny<string>(),
+                        It.IsAny<int>(),
+                        It.IsAny<int>(),
+                        It.IsAny<CancellationToken>()
+                    )
+                    .ConfigureAwait(false);
 
-            //Act
-            var result = await controller
-                .FindAlbums
-                (
-                    It.IsAny<string>(),
-                    It.IsAny<int>(),
-                    It.IsAny<int>(),
-                    It.IsAny<CancellationToken>()
-                )
-                .ConfigureAwait(false);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+                //Assert
+                Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+            }
         }
     }
 }

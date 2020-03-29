@@ -14,7 +14,7 @@ namespace Music.Library.Core.Helpers.Extensions
                 .Select(item => new Genre(Convert.ToInt32(item[0]), item[1]))
             .ToList();
 
-        public static string DurationFormat(this int? duration) => TimeSpan.FromSeconds(duration.GetValueOrDefault()).ToString();
+        public static string DurationFormat(this int? duration) => TimeSpan.FromSeconds(duration.Value).ToString() ?? string.Empty;
         
         public static List<Label> ToListOfLabels(this string labels) => (labels ?? string.Empty)
                         .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)

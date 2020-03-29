@@ -13,7 +13,7 @@ export default class App extends React.Component {
   }
 
   getData(query){
-    fetch(`http://localhost:5001/api/search/${query}/1/100`)
+    fetch(`http://localhost/music.library.api/api/search/${query}/1/100`)
     .then(res => res.json())
     .then(
       (result) => {

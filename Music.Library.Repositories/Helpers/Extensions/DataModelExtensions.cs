@@ -12,7 +12,8 @@ namespace Music.Library.Repositories.Helpers.Extensions
                 album.AlbumId, album.Duration, album.Title, album.ReleaseYear, album.Labels, album.Genres))
             .ToList();
 
-        public static void Guard(this List<object> parameters) => parameters.ForEach(parameter => {
+        public static void Guard(this List<object> parameters) => parameters.ForEach(parameter =>
+        {
             switch(parameter)
             {
                 case int intParameter:

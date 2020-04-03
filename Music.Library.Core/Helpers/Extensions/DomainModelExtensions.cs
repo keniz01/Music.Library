@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Music.Library.Core.Helpers.Extensions
 {
@@ -14,8 +13,8 @@ namespace Music.Library.Core.Helpers.Extensions
                 .Select(item => new Genre(Convert.ToInt32(item[0]), item[1]))
             .ToList();
 
-        public static string DurationFormat(this int? duration) => TimeSpan.FromSeconds(duration.Value).ToString() ?? string.Empty;
-        
+        public static string DurationFormat(this int? duration) => duration.HasValue ? TimeSpan.FromSeconds(duration.Value).ToString() : string.Empty;
+
         public static List<Label> ToListOfLabels(this string labels) => (labels ?? string.Empty)
                         .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(item => item.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries))

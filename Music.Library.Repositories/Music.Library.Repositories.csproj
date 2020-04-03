@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
 </Project>

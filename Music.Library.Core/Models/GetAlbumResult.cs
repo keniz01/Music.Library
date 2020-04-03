@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Music.Library.Core.Models
 {
-
     public class GetAlbumResult
     {
         public GetAlbumResult(int? artistId, string artistName, int? albumId,

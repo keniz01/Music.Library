@@ -10,7 +10,7 @@ namespace Music.Library.Core.Features.Search
         private readonly ISearchRepository _searchRepository;
         public GetAlbumsRequestHandler(ISearchRepository searchRepository) => _searchRepository = searchRepository;
 
-        public async Task<GetAlbumsResponse> Handle(GetAlbumsRequest request, CancellationToken cancellationToken) => 
+        public async Task<GetAlbumsResponse> Handle(GetAlbumsRequest request, CancellationToken cancellationToken) =>
             await _searchRepository.GetAlbumsAsync(request.Query, request.PageNumber, request.PageSize, cancellationToken);
     }
 }

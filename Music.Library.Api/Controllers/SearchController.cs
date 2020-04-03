@@ -14,13 +14,11 @@ namespace Music.Library.Api.Controllers
         public SearchController(IMediator mediator) => _mediator = mediator;
 
         [Route("{query}/{pageNumber}/{pageSize}")]
-        public async Task<IActionResult> FindAlbums(string query, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetAlbums(string query, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            GetAlbumsResponse albums = await _mediator.Send
-            (
-                new GetAlbumsRequest(query, pageNumber, pageSize), 
-                cancellationToken
-            ).ConfigureAwait(false);
+            var albums = await _mediator
+                .Send(new GetAlbumsRequest(query, pageNumber, pageSize), cancellationToken)
+                .ConfigureAwait(false);
 
             return Ok(albums);
         }

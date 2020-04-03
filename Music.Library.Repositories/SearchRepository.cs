@@ -18,14 +18,14 @@ namespace Music.Library.Repositories
             DataModelExtensions.Guard(new List<object> { query, pageNumber, pageSize });
 
             const int totalRecords = 0;
-            List<GetAlbumData> results = await _context
+            var results = await _context
                 .Albums
-                .FromSqlRaw("EXECUTE FindAlbums {0},{1},{2},{3} OUTPUT",
+                .FromSqlRaw("EXECUTE GetAlbums {0},{1},{2},{3} OUTPUT",
                     query, pageNumber, pageSize, totalRecords)
-                .ToListAsync()
+                .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            return new GetAlbumsResponse(DataModelExtensions.ToModel(results));
+            return new GetAlbumsResponse(results.ToModel());
         }
     }
 }

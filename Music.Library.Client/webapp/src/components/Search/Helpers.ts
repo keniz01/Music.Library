@@ -10,7 +10,7 @@ export default (function Helpers() {
         .then(data => data);
 
     const fetchInitialLoadData = async () =>
-         await fetch(`http://localhost/music.library.api/api/home/`)
+         await fetch(`http://localhost/music.library.api/api/dashboard/`)
             .then(response => response.json())
             .then(data => data);
 

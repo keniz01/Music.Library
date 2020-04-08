@@ -123,7 +123,7 @@
       list-style: none;
       display: inline-flex;
 
-      a {
+      button {
         display:block;
         width:20px;
         text-decoration: none;
@@ -147,23 +147,30 @@
 .dash-card-area {
   padding: 0 20px 0 20px;
   text-align: center;
-  display: flex;
+  display: grid;
+  justify-content: center;
+  grid-auto-flow: column;
+  grid-gap: 0.2rem;
 }
 
 .dash-card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 9rem;
+  padding: 0.5rem 0.5rem;
 
   /* On mouse-over, add a deeper shadow */
   &:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
     cursor: pointer;
   }
-
+  
   /* Add some padding inside the card container */
   .container {
     padding: 2px 16px;
+
+    &:first-child {
+      text-transform: uppercase;
+    }
   }
 }

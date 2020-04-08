@@ -16,10 +16,9 @@ export default class Pager extends React.Component {
                             {pageNumbers.map(pageNumber => {
                                 return (
                                     <li key={pageNumber}>
-                                        <a 
-                                            href='!#' 
+                                        <button 
                                             onClick={() => this.props.handlePageChange(pageNumber)}>{pageNumber}
-                                        </a>
+                                        </button>
                                     </li>
                                 )
                             })}                    

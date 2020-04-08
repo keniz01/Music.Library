@@ -1,38 +1,38 @@
 import React from 'react';
 
-export default class DashBoard extends React.Component {
+export default class DashBoardMetricsGrid extends React.Component {
     render() {
         const {totalArtists, totalAlbums, totalRecords, totalLabels, totalGenres } = this.props.statistics;
         return (
             <div className="dash-card-area">
                 <div className="dash-card">
                     <div className="container">
-                        <h4><b>Total Artist</b></h4> 
-                        <p>{totalArtists}</p>
+                        <div><b>Total Artist</b></div> 
+                        <div>{totalArtists}</div>
                     </div>
                 </div>
                 <div className="dash-card">
                     <div className="container">
-                        <h4><b>Total Albums</b></h4> 
-                        <p>{totalAlbums}</p>
+                        <div><b>Total Albums</b></div> 
+                        <div>{totalAlbums}</div>
                     </div>
                 </div>  
                 <div className="dash-card">
                     <div className="container">
-                        <h4><b>Total Records</b></h4> 
-                        <p>{totalRecords}</p>
+                        <div><b>Total Records</b></div> 
+                        <div>{totalRecords}</div>
                     </div>
                 </div>  
                 <div className="dash-card">
                     <div className="container">
-                        <h4><b>Total Labels</b></h4> 
-                        <p>{totalLabels}</p>
+                        <div><b>Total Labels</b></div> 
+                        <div>{totalLabels}</div>
                     </div>
                 </div>  
                 <div className="dash-card">
                     <div className="container">
-                        <h4><b>Total Genres</b></h4> 
-                        <p>{totalGenres}</p>
+                        <div><b>Total Genres</b></div> 
+                        <div>{totalGenres}</div>
                     </div>
                 </div>                
             </div>

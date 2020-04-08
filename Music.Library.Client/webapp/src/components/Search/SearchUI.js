@@ -1,8 +1,8 @@
 import React from 'react';
 import Helpers from './Helpers';
-import AlbumsTable  from './AlbumsTable';
+import SearchResultsGrid  from './SearchResultsGrid';
 import Pager from './Pager';
-import Dashboard from '../Dashboard/Dashboard';
+import DashBoardMetricsGrid from '../Dashboard/DashBoardMetricsGrid';
 
 export default class App extends React.Component {
   constructor(){
@@ -26,8 +26,8 @@ export default class App extends React.Component {
     const itemsPerPage = 10;
     const data = await Helpers.fetchSearchData(searchQuery, selectedPageNumber, itemsPerPage);
     this.setState({ 
-      albums: data.albums,
-      totalItems: data.totalItemCount,
+      albums: data.response,
+      totalItems: data.responseCount,
       title: `Found ${data.totalItemCount} results for "${searchQuery}"`,
       isSearch: true,
       itemsPerPage: itemsPerPage,
@@ -36,7 +36,6 @@ export default class App extends React.Component {
     };
 
   handlePageChange(selectedPageNumber){
-    //Fix for now
     this.fetchData(this.state.searchQuery, selectedPageNumber);
   }
 
@@ -51,9 +50,9 @@ export default class App extends React.Component {
     (async () => {
       const data = await Helpers.fetchInitialLoadData();
       this.setState({ 
-        albums: data.albums,
-        title: `The most recent ${data.albums.length} albums`,
-        statistics: data.statistics,
+        albums: data.latestAlbums,
+        title: `The most recent ${data.latestAlbums.length} albums`,
+        statistics: data.metrics,
         isSearch: false
       }); 
     })();
@@ -62,12 +61,12 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Dashboard statistics={this.state.statistics} />
+        <DashBoardMetricsGrid statistics={this.state.statistics} />
         <div className="search-input-area">
             <input type="text" id="searchTextInput" onKeyPress={this.handleKeyPress} />
         </div>
         <div>         
-          <AlbumsTable albums={this.state.albums } title={this.state.title} />
+          <SearchResultsGrid albums={this.state.albums } title={this.state.title} />
           <Pager 
             itemsPerPage={this.state.itemsPerPage} 
             isSearch={this.state.isSearch}

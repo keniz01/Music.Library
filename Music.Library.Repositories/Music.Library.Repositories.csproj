@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Music.Library.Application\Music.Library.Application.csproj" />
     <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
   </ItemGroup>
 

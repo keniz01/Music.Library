@@ -1,8 +1,8 @@
-﻿namespace Music.Library.Core.Models
+﻿namespace Music.Library.Core.Entities
 {
-    public class Genre
+    public class Label
     {
-        public Genre(int id, string name)
+        public Label(int id, string name)
         {
             Id = id;
             Name = name;

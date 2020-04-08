@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="8.0.1" />
+    <Compile Remove="Features\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Features\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
-﻿namespace Music.Library.Core.Models
+﻿namespace Music.Library.Core.Entities
 {
-    public class GetStatisticsResult
+    public class DashBoardMetrics
     {
-        public GetStatisticsResult(int totalRecords, 
+        public DashBoardMetrics(int totalRecords, 
             int totalAlbums, int totalGenres, int totalLabels, int totalArtists)
         {
             TotalGenres = totalGenres;

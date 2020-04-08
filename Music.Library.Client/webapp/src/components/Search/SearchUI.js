@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../App.css';
 import Helpers from './Helpers';
 import AlbumsTable  from './AlbumsTable';
-import StatisticsTable  from './StatisticsTable';
+import Pager from './Pager';
+import Dashboard from '../Dashboard/Dashboard';
 
 export default class App extends React.Component {
   constructor(){
@@ -12,43 +12,67 @@ export default class App extends React.Component {
       albums: [],
       title: '',
       statistics: {},
-      isSearch: false
+      isSearch: false,
+      totalItems: 0,
+      itemsPerPage: 0,
+      searchQuery: ''
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
-  async handleKeyPress(event){
-    const value = event.target.value;
-    if(event.which === 13 && value.length) {
-      const albums = await Helpers.fetchSearchData(value);
-      this.setState({ 
-        albums: albums,
-        title: `Found ${albums.length} results for "${value}"`,
-        isSearch: true
-       });   
-    }
-  }
-
-  async componentDidMount() {
-    const data = await Helpers.fetchInitialLoadData();
+  fetchData = async (searchQuery, selectedPageNumber) => {
+    const itemsPerPage = 10;
+    const data = await Helpers.fetchSearchData(searchQuery, selectedPageNumber, itemsPerPage);
     this.setState({ 
       albums: data.albums,
-      title: `The most recent ${data.albums.length} albums`,
-      statistics: data.statistics,
-      isSearch: false
-    }); 
+      totalItems: data.totalItemCount,
+      title: `Found ${data.totalItemCount} results for "${searchQuery}"`,
+      isSearch: true,
+      itemsPerPage: itemsPerPage,
+      searchQuery: searchQuery
+     });  
+    };
+
+  handlePageChange(selectedPageNumber){
+    //Fix for now
+    this.fetchData(this.state.searchQuery, selectedPageNumber);
+  }
+
+  handleKeyPress(event){
+      const searchQuery = event.target.value;
+      if(event.which === 13 && searchQuery.length) {
+        this.fetchData(searchQuery, 1);  
+      }      
+  }
+
+  componentDidMount() {
+    (async () => {
+      const data = await Helpers.fetchInitialLoadData();
+      this.setState({ 
+        albums: data.albums,
+        title: `The most recent ${data.albums.length} albums`,
+        statistics: data.statistics,
+        isSearch: false
+      }); 
+    })();
   }
 
   render() {
     return (
       <div>
+        <Dashboard statistics={this.state.statistics} />
         <div className="search-input-area">
             <input type="text" id="searchTextInput" onKeyPress={this.handleKeyPress} />
         </div>
-        <div className="dashboard-tables">
-          <AlbumsTable albums={ this.state.albums } title={this.state.title} />
-          <StatisticsTable statistics={ this.state.statistics } isSearch={ this.state.isSearch }/>
+        <div>         
+          <AlbumsTable albums={this.state.albums } title={this.state.title} />
+          <Pager 
+            itemsPerPage={this.state.itemsPerPage} 
+            isSearch={this.state.isSearch}
+            totalItems={this.state.totalItems}
+            handlePageChange={this.handlePageChange}/>
         </div>
       </div>
     );

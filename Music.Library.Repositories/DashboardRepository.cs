@@ -1,23 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Music.Library.Core.Features.Home;
-using Music.Library.Core.Models;
-using Music.Library.Core.Repositories;
+using Music.Library.Application.Features.DashBoard;
+using Music.Library.Application.Services.Repositories;
+using Music.Library.Core.Entities;
 using Music.Library.Repositories.Helpers.Extensions;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Music.Library.Repositories
 {
-    public class DashboardRepository : IDashboardRepository
+    public class DashBoardRepository : IDashBoardRepository
     {
         private readonly MusicDataContext _context;
-        public DashboardRepository(MusicDataContext context) => _context = context;
+        public DashBoardRepository(MusicDataContext context) => _context = context;
 
-        public async Task<GetDashboardResponse> GetDashboardAsync(CancellationToken cancellationToken)
+        public async Task<GetDashBoardResponse> GetDashBoardAsync(CancellationToken cancellationToken)
         {
             var parameters = new Dictionary<string, SqlParameter>
             {
@@ -32,13 +32,13 @@ namespace Music.Library.Repositories
                 "{0} OUTPUT,{1} OUTPUT,{2} OUTPUT,{3} OUTPUT,{4} OUTPUT";
 
             var results = await _context
-                .Albums
+                .SearchResponses
                 .FromSqlRaw(sqlStatement, parameters.Values.Cast<SqlParameter>().ToArray())
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
             var albums = results.ToModel();
-            var statistics = new GetStatisticsResult
+            var metrics = new DashBoardMetrics
             (
                 (int)parameters["@TotalRecords"].Value,                
                 (int)parameters["@TotalAlbums"].Value,
@@ -46,7 +46,7 @@ namespace Music.Library.Repositories
                 (int)parameters["@TotalLabels"].Value,
                 (int)parameters["@TotalArtists"].Value
             );
-            return new GetDashboardResponse(statistics, albums);
+            return new GetDashBoardResponse(metrics, albums);
         }
     }
 }

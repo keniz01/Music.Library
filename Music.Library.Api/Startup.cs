@@ -8,9 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Music.Library.Core.Features.Home;
-using Music.Library.Core.Features.Search;
-using Music.Library.Core.Repositories;
+using Music.Library.Application.Features.DashBoard;
+using Music.Library.Application.Features.Search;
+using Music.Library.Application.Services.Repositories;
 using Music.Library.Repositories;
 using System.Reflection;
 
@@ -36,9 +36,9 @@ namespace Music.Library.Api
             services.AddControllers();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddScoped<ISearchRepository, SearchRepository>();
-            services.AddScoped<IDashboardRepository, DashboardRepository>();
-            services.AddScoped<IRequestHandler<GetAlbumsRequest, GetAlbumsResponse>, GetAlbumsRequestHandler>();
-            services.AddScoped<IRequestHandler<GetDashboardRequest, GetDashboardResponse>, GetDashboardRequestHandler>();
+            services.AddScoped<IDashBoardRepository, DashBoardRepository>();
+            services.AddScoped<IRequestHandler<GetSearchRequest, GetSearchResponse>, GetSearchRequestHandler>();
+            services.AddScoped<IRequestHandler<GetDashBoardRequest, GetDashBoardResponse>, GetDashBoardRequestHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Music.Library.Core.Features.Search;
-using Music.Library.Core.Repositories;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Music.Library.Application.Features.Search;
+using Music.Library.Application.Services.Repositories;
 using Music.Library.Repositories.Helpers.Extensions;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,19 +15,19 @@ namespace Music.Library.Repositories
         private readonly MusicDataContext _context;
         public SearchRepository(MusicDataContext context) => _context = context;
 
-        public async Task<GetAlbumsResponse> GetAlbumsAsync(string query, int pageNumber, int pageSize, CancellationToken cancellationToken)
+        public async Task<GetSearchResponse> GetSearchResponseAsync(string query, int pageNumber, int pageSize, CancellationToken cancellationToken)
         {
             DataModelExtensions.Guard(new List<object> { query, pageNumber, pageSize });
 
-            const int totalRecords = 0;
+            var totalRecords = new SqlParameter("@TotalRecords", DbType.Int32) { Direction = ParameterDirection.Output };
             var results = await _context
-                .Albums
-                .FromSqlRaw("EXECUTE GetAlbums {0},{1},{2},{3} OUTPUT",
+                .SearchResponses
+                .FromSqlRaw("EXEC GetAlbums {0},{1},{2},{3} OUTPUT",
                     query, pageNumber, pageSize, totalRecords)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            return new GetAlbumsResponse(results.ToModel());
+            return new GetSearchResponse(results.ToModel(), (int)totalRecords.Value);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Music.Library.Core.Models
+﻿namespace Music.Library.Core.Entities
 {
     public class Artist
     {

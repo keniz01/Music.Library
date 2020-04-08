@@ -1,0 +1,169 @@
+/*
+.App {
+  text-align: center;
+}
+*/
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#searchTextInput {
+  width: 40%;
+    border-radius: 0.4rem;
+    height: 1.5rem;
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+#title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+#albumTable, #statsTable {
+  margin: auto;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-collapse: collapse;
+  }
+  
+  td {
+    text-align: left;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgb(109, 112, 109);
+    color: white;
+  }
+
+  caption {
+    text-align: left;
+  }
+}
+
+.footer {
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.search-input-area {
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.app-header {
+  display: flex;
+
+  a {
+    text-decoration: none;
+    font: italic 1.8em "Fira Sans", serif;
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.pager {
+
+  ul {
+    margin: 0;
+    text-align: center;
+
+    li {
+      list-style: none;
+      display: inline-flex;
+
+      a {
+        display:block;
+        width:20px;
+        text-decoration: none;
+        padding: 10px 10px;
+        text-align: center;
+
+        &:hover {
+          background-color: rgb(109, 112, 109);
+          border-radius: 1.5rem;
+        }
+  
+        &:selected {
+          background-color: rgb(109, 112, 109);
+          border-radius: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+.dash-card-area {
+  padding: 0 20px 0 20px;
+  text-align: center;
+  display: flex;
+}
+
+.dash-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 9rem;
+
+  /* On mouse-over, add a deeper shadow */
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+}

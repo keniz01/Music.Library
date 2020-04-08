@@ -41,8 +41,7 @@ export default class AlbumsTable extends React.Component {
      */
     constructTable() {
         return (
-            <div>
-                <table id="albumTable">
+            <table id="albumTable">
                 <caption>{this.props.title}</caption>
                 <thead>
                     {this.constructTableHeaders()}
@@ -50,14 +49,13 @@ export default class AlbumsTable extends React.Component {
                 <tbody>
                     {this.constructTableRows()}
                 </tbody>
-                </table>
-            </div>
+            </table>
         )
     }
 
     render() {
         return (
-            <div>
+            <div id="albums-table-container">
                 { this.props.albums.length ? this.constructTable() : null }
             </div>
         )

@@ -1,4 +1,4 @@
-﻿using Music.Library.Core.Models;
+﻿using Music.Library.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ namespace Music.Library.Repositories.Helpers.Extensions
 {
     public static class DataModelExtensions
     {
-        public static List<GetAlbumResult> ToModel(this List<GetAlbumData> data) =>
-            data.Select(album => new GetAlbumResult(album.ArtistId, album.ArtistName,
+        public static List<SearchResponse> ToModel(this List<SearchResponseData> data) =>
+            data.Select(album => new SearchResponse(album.ArtistId, album.ArtistName,
                 album.AlbumId, album.Duration, album.Title, album.ReleaseYear, album.Labels, album.Genres))
             .ToList();
 

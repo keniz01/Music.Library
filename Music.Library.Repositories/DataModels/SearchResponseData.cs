@@ -1,21 +1,18 @@
-﻿using Music.Library.Core.Helpers.Extensions;
-using System.Collections.Generic;
-
-namespace Music.Library.Core.Models
+﻿namespace Music.Library.Repositories
 {
-    public class GetAlbumResult
+    public class SearchResponseData
     {
-        public GetAlbumResult(int? artistId, string artistName, int? albumId,
+        public SearchResponseData(int? artistId, string artistName, int? albumId,
             int? duration, string title, int? releaseYear, string labels, string genres)
         {
             ArtistId = artistId;
             ArtistName = artistName;
             AlbumId = albumId;
-            Duration = duration.DurationFormat();
+            Duration = duration;
             Title = title;
             ReleaseYear = releaseYear;
-            Labels = labels.ToListOfLabels();
-            Genres = genres.ToListOfGenres();
+            Labels = labels;
+            Genres = genres;
         }
 
         public int? ArtistId { get; private set; }
@@ -24,14 +21,14 @@ namespace Music.Library.Core.Models
 
         public int? AlbumId { get; }
 
-        public string Duration { get; }
+        public int? Duration { get; }
 
         public string Title { get; }
 
         public int? ReleaseYear { get; }
 
-        public List<Label> Labels { get; }
+        public string Labels { get; }
 
-        public List<Genre> Genres { get; }
+        public string Genres { get; }
     }
 }

@@ -37,7 +37,7 @@ export default class StatisticsTable extends React.Component {
         return (
             <div>
                 <table id="statsTable">
-                <caption>"The latest Music Library statistics."</caption>
+                <caption>The latest Music Library statistics.</caption>
                 <thead>
                     {this.TableHeaders()}
                 </thead>
@@ -51,7 +51,7 @@ export default class StatisticsTable extends React.Component {
 
     render() {
         return (
-            <div className={ this.props.isSearch ? "hide" : "show" }>
+            <div className={ this.props.isVisible ? "show" : "hide" }>
                 { this.DataTable() }
             </div>
         )

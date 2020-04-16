@@ -29,9 +29,8 @@ Task("Run-Unit-Tests")
 	var coverageReportDir = "../../reports";
 	CleanDirectories(coverageReportDir);
 	
-	var coverageReport = new FilePath($"{coverageReportDir}/coverage_results.xml");
-	
-	var projects = GetFiles("../../src/*.Tests/*.csproj");
+	var coverageReport = new FilePath($"{coverageReportDir}/coverage_results.xml");	
+	var projects = GetFiles("../../src/tests/*.Tests/*.csproj");
 	
 	foreach(var project in projects)
 	{				

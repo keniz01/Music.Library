@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
-    <ProjectReference Include="..\Music.Library.Repositories\Music.Library.Repositories.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <ProjectReference Include="..\..\..\core\Music.Library.Application\Music.Library.Application.csproj" />
+    <ProjectReference Include="..\..\persistence\Music.Library.Repositories\Music.Library.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

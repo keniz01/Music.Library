@@ -38,14 +38,14 @@ namespace Music.Library.Repositories
 
             var albums = results.ToModel();
             var metrics = new DashBoardMetrics
-            (
-                (int)parameters["@TotalRecords"].Value,
-                (int)parameters["@TotalAlbums"].Value,
-                (int)parameters["@TotalGenres"].Value,
-                (int)parameters["@TotalLabels"].Value,
-                (int)parameters["@TotalArtists"].Value
-            );
-            return new DashBoardPackage(metrics, albums);
+            {
+                TotalRecords = (int)parameters["@TotalRecords"].Value,
+                TotalAlbums = (int)parameters["@TotalAlbums"].Value,
+                TotalGenres = (int)parameters["@TotalGenres"].Value,
+                TotalLabels = (int)parameters["@TotalLabels"].Value,
+                TotalArtists = (int)parameters["@TotalArtists"].Value
+            };
+            return new DashBoardPackage { Metrics = metrics, LatestAlbums = albums };
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Music.Library.Repositories
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            return new SearchPackage(results.ToModel(), (int)totalRecords.Value);
+            return new SearchPackage { Response = results.ToModel(), ResponseCount = (int)totalRecords.Value };
         }
     }
 }

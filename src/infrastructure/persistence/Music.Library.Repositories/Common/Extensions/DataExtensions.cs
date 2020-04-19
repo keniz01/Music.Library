@@ -1,4 +1,5 @@
-﻿using Music.Library.Core.Entities;
+﻿using Music.Library.Core.Common.Extensions;
+using Music.Library.Core.Entities;
 using Music.Library.Repositories.Models;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,17 @@ namespace Music.Library.Repositories.Common.Extensions
     public static class DataExtensions
     {
         public static List<Record> ToModel(this List<SearchData> data) =>
-            data.Select(album => new Record.Builder()
-                .SetArtistId(album.ArtistId)
-                .SetArtistName(album.ArtistName)
-                .SetAlbumId(album.AlbumId)
-                .SetDuration(album.Duration)
-                .SetTitle(album.Title)
-                .SetArtistId(album.ReleaseYear)
-                .SetLabels(album.Labels)
-                .SetGenres(album.Genres)
-            .Build()).ToList();
+            data.Select(album => new Record
+            {
+                ArtistId = album.ArtistId,
+                ArtistName = album.ArtistName,
+                AlbumId = album.AlbumId,
+                Duration = album.Duration.Format(),
+                Title = album.Title,
+                ReleaseYear = album.ReleaseYear,
+                Labels = album.Labels.ToListOfLabels(),
+                Genres = album.Genres.ToListOfGenres()
+            }).ToList();
 
         public static void Guard(this List<object> parameters) => parameters.ForEach(parameter =>
         {

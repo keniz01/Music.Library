@@ -1,18 +1,31 @@
 #tool "nuget:?package=OpenCover&version=4.7.922"
 #tool "nuget:?package=ReportGenerator&version=4.5.5"
 
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Debug");
+var target = Argument("target", "default");
+var configuration = Argument("configuration", "debug");
 var solutionPath = "../../src/Music.Library.sln";
 
-Task("Restore-NuGet-Packages").Does(() => DotNetCoreRestore(solutionPath));
-Task("Build").Does(() => DotNetCoreBuild(solutionPath, new DotNetCoreBuildSettings { Configuration = "Debug" }));
-Task("Clean").Does(() => 
-	{
-		DotNetCoreClean(solutionPath, new DotNetCoreCleanSettings { Configuration = "Debug" });
-	});
+Task("restore").Does(() => DotNetCoreRestore(solutionPath));
+Task("build").Does(() => DotNetCoreBuild(solutionPath, new DotNetCoreBuildSettings { Configuration = "Debug" }));
+Task("clean").Does(() => DotNetCoreClean(solutionPath, new DotNetCoreCleanSettings { Configuration = "Debug" }));
 
-Task("Run-Unit-Tests")
+Task("tests")
+ .Does(() =>
+ {	
+	var dotNetTestSettings = new DotNetCoreTestSettings
+	{
+		Configuration = configuration
+	};
+	
+	var projects = GetFiles("../../src/tests/music.library.tests/*.Tests/*.csproj");
+	
+	foreach(var project in projects)
+	{				
+		DotNetCoreTest(project.FullPath, dotNetTestSettings);		
+	}
+ });
+ 
+Task("codecoverage")
  .Does(() =>
  {	
 	var openCoverSettings = new OpenCoverSettings
@@ -30,18 +43,26 @@ Task("Run-Unit-Tests")
 	CleanDirectories(coverageReportDir);
 	
 	var coverageReport = new FilePath($"{coverageReportDir}/coverage_results.xml");	
-	var projects = GetFiles("../../src/tests/*.Tests/*.csproj");
+	var projects = GetFiles("../../src/tests/music.library.tests/*.Tests/*.csproj");
 	
 	foreach(var project in projects)
 	{				
-		DotNetCoreTest(project.FullPath, dotNetTestSettings);
 		OpenCover(context => context.DotNetCoreTest(project.FullPath, dotNetTestSettings), coverageReport, openCoverSettings);			
 	}
 	
 	ReportGenerator(coverageReport, coverageReportDir);	
  });
 
-Task("Default") 
-  .IsDependentOn("Run-Unit-Tests");
+Task("default") 
+  .IsDependentOn("restore")
+  .IsDependentOn("clean")
+  .IsDependentOn("build");  
+
+Task("full") 
+  .IsDependentOn("restore")
+  .IsDependentOn("clean")
+  .IsDependentOn("build")
+  .IsDependentOn("tests")
+  .IsDependentOn("codecoverage");    
 
 RunTarget(target);

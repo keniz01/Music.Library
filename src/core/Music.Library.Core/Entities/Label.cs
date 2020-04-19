@@ -2,13 +2,7 @@
 {
     public class Label
     {
-        public Label(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public int Id { get; }
-        public string Name { get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

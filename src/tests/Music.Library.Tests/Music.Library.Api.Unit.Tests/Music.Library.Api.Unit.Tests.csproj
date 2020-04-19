@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\TestData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
+    <PackageReference Include="coverlet.collector" Version="1.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\infrastructure\client\Music.Library.Api\Music.Library.Api.csproj" />
+    <ProjectReference Include="..\Music.Library.Tests.Common\Music.Library.Tests.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Music.Library.Api">
+      <HintPath>..\..\..\lib\Music.Library.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Music.Library.Application">
+      <HintPath>..\..\..\lib\Music.Library.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Music.Library.Core">
+      <HintPath>..\..\..\lib\Music.Library.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

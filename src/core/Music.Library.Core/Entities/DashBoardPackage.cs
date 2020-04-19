@@ -4,13 +4,9 @@ namespace Music.Library.Core.Entities
 {
     public class DashBoardPackage
     {
-        public DashBoardPackage(DashBoardMetrics metrics, List<Record> latestAlbums)
-        {
-            Metrics = metrics;
-            LatestAlbums = latestAlbums;
-        }
+        public DashBoardPackage() => LatestAlbums = new List<Record>();
 
-        public DashBoardMetrics Metrics { get; }
-        public List<Record> LatestAlbums { get; }
+        public DashBoardMetrics Metrics { get; set; }
+        public List<Record> LatestAlbums { get; set; }
     }
 }

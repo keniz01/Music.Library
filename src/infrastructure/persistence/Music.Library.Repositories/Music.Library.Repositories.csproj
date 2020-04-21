@@ -5,16 +5,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DependencyInjection.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Music.Library.Core">
+      <HintPath>..\..\..\..\assemblies\Music.Library.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+<!--
+  <ItemGroup>
     <ProjectReference Include="..\..\..\core\Music.Library.Core\Music.Library.Core.csproj" />
   </ItemGroup>
+-->
 
+  <Target Name="CopyFiles" AfterTargets="Build">
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+  </Target>
 </Project>

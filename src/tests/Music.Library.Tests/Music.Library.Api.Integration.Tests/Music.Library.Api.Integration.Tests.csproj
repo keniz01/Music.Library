@@ -21,6 +21,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\infrastructure\client\Music.Library.Api\Music.Library.Api.csproj" />
+    <ProjectReference Include="..\Music.Library.Tests.Common\Music.Library.Tests.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Music.Library.Application">
+      <HintPath>..\..\..\..\assemblies\Music.Library.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Music.Library.Core">
+      <HintPath>..\..\..\..\assemblies\Music.Library.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

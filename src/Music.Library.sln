@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{5A6C4FED
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{7CF7B47C-3234-4EC1-8C7A-7FBD0B8AF143}"
 	ProjectSection(SolutionItems) = preProject
-		music_database_generator.sql = music_database_generator.sql
+		..\database\music_database_generator.sql = ..\database\music_database_generator.sql
 	EndProjectSection
 EndProject
 Global

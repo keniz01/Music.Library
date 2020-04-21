@@ -29,14 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Music.Library.Api">
-      <HintPath>..\..\..\lib\Music.Library.Api.dll</HintPath>
-    </Reference>
     <Reference Include="Music.Library.Application">
-      <HintPath>..\..\..\lib\Music.Library.Application.dll</HintPath>
+      <HintPath>..\..\..\..\assemblies\Music.Library.Application.dll</HintPath>
     </Reference>
     <Reference Include="Music.Library.Core">
-      <HintPath>..\..\..\lib\Music.Library.Core.dll</HintPath>
+      <HintPath>..\..\..\..\assemblies\Music.Library.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 

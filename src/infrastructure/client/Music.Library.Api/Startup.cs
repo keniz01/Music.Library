@@ -5,11 +5,17 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Music.Library.Application;
+using Music.Library.Application.UseCases.DashBoard;
+using Music.Library.Application.UseCases.Search;
+using Music.Library.Core.Entities;
+using Music.Library.Core.Services.Repositories;
 using Music.Library.Repositories;
 using System.Reflection;
 
@@ -25,11 +31,19 @@ namespace Music.Library.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IRequestHandler<GetSearchRequest, SearchPackage>, GetSearchRequestHandler>();
+            services.AddScoped<IRequestHandler<GetDashBoardRequest, DashBoardPackage>, GetDashBoardRequestHandler>();
+            services.AddScoped<ISearchRepository, SearchRepository>();
+            services.AddScoped<IDashBoardRepository, DashBoardRepository>();
+            services.AddDbContext<MusicDataContext>(service => service
+                .UseSqlServer(Configuration.GetConnectionString("MusicDatabase"))
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .EnableSensitiveDataLogging()
+                .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Debug))));
+
             services.AddCors();
             services.AddControllers();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-            services.AddApplicationServices();
-            services.AddRepositoryServices(Configuration);
             services.AddSwaggerGen(options =>
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Music Library API", Version = "v1" }));
         }

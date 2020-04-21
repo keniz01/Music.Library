@@ -1,5 +1,6 @@
 #tool "nuget:?package=OpenCover&version=4.7.922"
 #tool "nuget:?package=ReportGenerator&version=4.5.5"
+#tool "nuget:?package=roundhouse&version=1.2.1"
 
 var target = Argument("target", "default");
 var configuration = Argument("configuration", "debug");

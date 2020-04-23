@@ -54,12 +54,23 @@ Task("codecoverage")
 	ReportGenerator(coverageReport, coverageReportDir);	
  });
 
+Task("database")
+	.Does(() => 
+	{
+		RoundhouseMigrate(new RoundhouseSettings{
+			ServerName = "(local)",
+			DatabaseName = "MusicContent",
+			SqlFilesDirectory = "../../database/sql"
+		});
+	});
+
 Task("default") 
   .IsDependentOn("restore")
   .IsDependentOn("clean")
   .IsDependentOn("build");  
 
 Task("full") 
+  .IsDependentOn("database")
   .IsDependentOn("restore")
   .IsDependentOn("clean")
   .IsDependentOn("build")

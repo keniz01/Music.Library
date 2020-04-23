@@ -40,7 +40,7 @@ Generated\ Files/
 [Bb]uild[Ll]og.*
 
 # Test Coverage report
-/[Rr]eports/*
+[Rr]eports/
 
 # NUNIT
 *.VisualState.xml

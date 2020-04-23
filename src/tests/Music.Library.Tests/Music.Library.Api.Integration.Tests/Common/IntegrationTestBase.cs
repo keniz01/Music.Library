@@ -22,9 +22,7 @@ namespace Music.Library.Api.Integration.Tests.Common
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
 
-            T result = JsonSerializer.Deserialize<T>(response, options);
-
-            return result;
+            return JsonSerializer.Deserialize<T>(response, options);
         }
     }
 }

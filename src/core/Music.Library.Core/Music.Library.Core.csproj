@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <None Remove="Features\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\Album.cs" />
+    <Compile Remove="Entities\SearchHit.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.3" />
+  </ItemGroup>
+  <Target Name="CopyFiles" AfterTargets="Build">
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+  </Target>
+</Project>

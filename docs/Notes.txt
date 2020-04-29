@@ -1,0 +1,8 @@
+Configurations steps
+----------------------
+
+1) Run the music_database_generator.sql script in SQL Management Studio or however.
+2) When published to IIS you may encounter - "Login failed for user IIS APPPOOL\DefaultAppPool" error
+In SQL Management Studio, add IIS APPPOOL\DefaultAppPool via the SQL Server Logins folder.
+Go to MusicContext and map IIS APPPOOL\DefaultAppPool to MusicContext then assign dbOwner membership (to execute sprocs)
+3).editorconfig is a configurable file that overwrites any user settings in VS2019. This is used to enforce my personal coding style! Its a bit strict, for consistence

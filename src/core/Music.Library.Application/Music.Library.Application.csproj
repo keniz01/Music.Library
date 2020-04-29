@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DependencyInjection.cs" />
+    <Compile Remove="UseCases\DashBoard\DashBoardPackage.cs" />
+    <Compile Remove="UseCases\DashBoard\GetStatisticsRequest.cs" />
+    <Compile Remove="UseCases\DashBoard\GetStatisticsResponse.cs" />
+    <Compile Remove="UseCases\Pagination.cs" />
+    <Compile Remove="UseCases\Search\SearchPackage.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Music.Library.Core">
+      <HintPath>..\..\..\assemblies\Music.Library.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+<!--
+  <ItemGroup>
+    <ProjectReference Include="..\Music.Library.Core\Music.Library.Core.csproj" />
+  </ItemGroup>
+ --> 
+  <Target Name="CopyFiles" AfterTargets="Build">
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+  </Target>  
+
+</Project>

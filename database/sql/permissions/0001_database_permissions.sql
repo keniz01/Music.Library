@@ -1,3 +1,3 @@
-GO
-ALTER ROLE [db_owner] ADD MEMBER [IIS APPPOOL\DefaultAppPool]
-GO
+--GO
+--ALTER ROLE [db_owner] ADD MEMBER [IIS APPPOOL\DefaultAppPool]
+--GO

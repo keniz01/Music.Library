@@ -23,14 +23,8 @@
       <HintPath>..\..\..\..\assemblies\Music.Library.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-<!--
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Music.Library.Core\Music.Library.Core.csproj" />
-  </ItemGroup>
--->
-
   <Target Name="CopyFiles" AfterTargets="Build">
-	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
-	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="$(ProjectDir)/../../../../assemblies/" />
+	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="$(ProjectDir)/../../../../assemblies/" />
   </Target>
 </Project>

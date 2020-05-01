@@ -40,8 +40,10 @@
     <ProjectReference Include="..\..\persistence\Music.Library.Repositories\Music.Library.Repositories.csproj" />
   </ItemGroup>
 -->
+<!--
   <Target Name="CopyFiles" AfterTargets="Build">
 	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
 	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
   </Target>
+  -->
 </Project>

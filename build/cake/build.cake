@@ -1,80 +1,65 @@
-#tool "nuget:?package=OpenCover&version=4.7.922"
 #tool "nuget:?package=ReportGenerator&version=4.5.5"
 #tool "nuget:?package=roundhouse&version=1.2.1"
+#addin "nuget:?package=Cake.Coverlet&version=2.4.2"
 
 var target = Argument("target", "default");
 var configuration = Argument("configuration", "debug");
 var solutionPath = "../../src/Music.Library.sln";
 
 Task("restore").Does(() => DotNetCoreRestore(solutionPath));
+
 Task("build").Does(() => DotNetCoreBuild(solutionPath, new DotNetCoreBuildSettings { Configuration = "Debug" }));
+
 Task("clean").Does(() => DotNetCoreClean(solutionPath, new DotNetCoreCleanSettings { Configuration = "Debug" }));
 
 Task("tests")
  .Does(() =>
  {	
-	var dotNetTestSettings = new DotNetCoreTestSettings
+	var testSettings = new DotNetCoreTestSettings
 	{
 		Configuration = configuration
 	};
-	
-	var projects = GetFiles("../../src/tests/music.library.tests/*.Tests/*.csproj");
-	
-	foreach(var project in projects)
-	{				
-		DotNetCoreTest(project.FullPath, dotNetTestSettings);		
-	}
- });
- 
-Task("codecoverage")
- .Does(() =>
- {	
-	var openCoverSettings = new OpenCoverSettings
-    {
-        OldStyle = true,
-        MergeOutput = true
-    };
-	
-	var dotNetTestSettings = new DotNetCoreTestSettings
+	var codeCoverageOutput = MakeAbsolute(Directory("../../testresults/"));	
+	var coverletSettings = new CoverletSettings
 	{
-		Configuration = configuration
+            CollectCoverage = true,
+            CoverletOutputDirectory = codeCoverageOutput,			
+            CoverletOutputFormat = CoverletOutputFormat.cobertura         
 	};
-	
-	var coverageReportDir = "../../reports";
-	CleanDirectories(coverageReportDir);
-	
-	var coverageReport = new FilePath($"{coverageReportDir}/coverage_results.xml");	
+
+	CleanDirectories("../../testresults/");
+
 	var projects = GetFiles("../../src/tests/music.library.tests/*.Tests/*.csproj");
-	
+
 	foreach(var project in projects)
 	{				
-		OpenCover(context => context.DotNetCoreTest(project.FullPath, dotNetTestSettings), coverageReport, openCoverSettings);			
+		coverletSettings.CoverletOutputName = $"coverage_cobertura_{DateTime.UtcNow:dd-MM-yyyy-HH-mm-ss-FFF}.xml";
+		DotNetCoreTest(project.FullPath, testSettings, coverletSettings);			
 	}
-	
-	ReportGenerator(coverageReport, coverageReportDir);	
+
+	ReportGenerator($"{codeCoverageOutput}/*.xml", codeCoverageOutput);
  });
 
 Task("database")
 	.Does(() => 
 	{
 		RoundhouseMigrate(new RoundhouseSettings{
+			Silent = true,
 			ServerName = "(local)",
 			DatabaseName = "MusicContent",
-			SqlFilesDirectory = "../../database/sql"
+			SqlFilesDirectory = "../../database/sql",
+			ConnectionString = "server=(local);database=MusicContent;User id=sa;Password=P@55w0rd"
 		});
 	});
 
 Task("default") 
-  .IsDependentOn("restore")
   .IsDependentOn("clean")
+  .IsDependentOn("restore")
   .IsDependentOn("build");  
 
 Task("full") 
   .IsDependentOn("database")
-  .IsDependentOn("restore")
-  .IsDependentOn("clean")
-  .IsDependentOn("build")
-  .IsDependentOn("tests")
-  .IsDependentOn("codecoverage");    
+  .IsDependentOn("default") 
+  .IsDependentOn("tests");    
 
 RunTarget(target);

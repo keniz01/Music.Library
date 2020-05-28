@@ -40,25 +40,33 @@ Task("tests")
 	ReportGenerator($"{codeCoverageOutput}/*.xml", codeCoverageOutput);
  });
 
-Task("database")
+var roundHouseSettings = new RoundhouseSettings 
+{
+	Silent = true,
+	ServerName = "(local)",
+	DatabaseName = "MusicContent",
+	SqlFilesDirectory = "../../database/sql",
+	ConnectionString = "server=(local);database=MusicContent;User id=sa;Password=P@55w0rd"
+};
+Task("db-migrate")
 	.Does(() => 
 	{
-		RoundhouseMigrate(new RoundhouseSettings{
-			Silent = true,
-			ServerName = "(local)",
-			DatabaseName = "MusicContent",
-			SqlFilesDirectory = "../../database/sql",
-			ConnectionString = "server=(local);database=MusicContent;User id=sa;Password=P@55w0rd"
-		});
+		RoundhouseMigrate(roundHouseSettings);
 	});
 
+
+Task("db-drop")
+	.Does(() => 
+	{
+		RoundhouseDrop(roundHouseSettings);
+	});
 Task("default") 
   .IsDependentOn("clean")
   .IsDependentOn("restore")
   .IsDependentOn("build");  
 
 Task("full") 
-  .IsDependentOn("database")
+  .IsDependentOn("db-migrate")
   .IsDependentOn("default") 
   .IsDependentOn("tests");    
 

@@ -38,8 +38,8 @@ BEGIN
 					WHERE AG.AlbumId = Album.Id
 					FOR XML PATH('')
 					), 1, 1, '' ) AS [Genres]
-	FROM Artists Artist
-	JOIN ArtistAlbums ON Artist.Id = ArtistAlbums.ArtistId
-	JOIN Albums Album ON Album.Id = ArtistAlbums.AlbumId
+	FROM Albums Album
+	LEFT JOIN ArtistAlbums ON Album.Id = ArtistAlbums.AlbumId
+	LEFT JOIN Artists Artist ON Artist.Id = ArtistAlbums.ArtistId
 END
 GO

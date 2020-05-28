@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerComposeProjectPath>../../../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,15 +12,11 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,17 +30,4 @@
       <HintPath>..\..\..\..\assemblies\Music.Library.Repositories.dll</HintPath>
     </Reference>
   </ItemGroup>
-
-<!--
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Music.Library.Application\Music.Library.Application.csproj" />
-    <ProjectReference Include="..\..\persistence\Music.Library.Repositories\Music.Library.Repositories.csproj" />
-  </ItemGroup>
--->
-<!--
-  <Target Name="CopyFiles" AfterTargets="Build">
-	<Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
-	<Copy SourceFiles="$(OutDir)$(AssemblyName).pdb" DestinationFolder="C:\workspace\repos\music.library\assemblies\" />
-  </Target>
-  -->
 </Project>

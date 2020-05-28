@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<buildInfo>
+    <projectName>Music.Library</projectName>
+    <companyName>Music Library</companyName>
+    <versionMajor>0</versionMajor>
+    <versionMinor>1</versionMinor>
+    <versionPatch>1</versionPatch>
+    <buildNumber>1</buildNumber>
+    <revision>1</revision>
+    <version>0.1.1.1</version>
+    <repositoryPath>https://github.com/keniz01/Music.Library.git</repositoryPath>
+    <microsoftNetFramework>netcoreapp3.1</microsoftNetFramework>
+    <msbuildConfiguration>Release</msbuildConfiguration>
+    <msbuildPlatform>Any CPU</msbuildPlatform>
+    <builtWith>MSBuild v. 4.5</builtWith>
+</buildInfo>

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  music.library.api:
+    image: ${DOCKER_REGISTRY-}musiclibrary
+    build:
+      context: .
+      dockerfile: infrastructure/client/Music.Library.Api/Dockerfile

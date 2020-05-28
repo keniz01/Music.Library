@@ -18,7 +18,7 @@ export default class App extends React.Component {
       searchQuery: ''
     };
 
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyEnterPress = this.handleKeyEnterPress.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
   }
 
@@ -28,7 +28,7 @@ export default class App extends React.Component {
     this.setState({ 
       albums: data.response,
       totalItems: data.responseCount,
-      title: `Found ${data.totalItemCount} results for "${searchQuery}"`,
+      title: `Found ${data.responseCount} results for "${searchQuery}"`,
       isSearch: true,
       itemsPerPage: itemsPerPage,
       searchQuery: searchQuery
@@ -39,7 +39,7 @@ export default class App extends React.Component {
     this.fetchData(this.state.searchQuery, selectedPageNumber);
   }
 
-  handleKeyPress(event){
+  handleKeyEnterPress(event){
       const searchQuery = event.target.value;
       if(event.which === 13 && searchQuery.length) {
         this.fetchData(searchQuery, 1);  
@@ -63,7 +63,7 @@ export default class App extends React.Component {
       <div>
         <DashBoardMetricsGrid statistics={this.state.statistics} />
         <div className="search-input-area">
-            <input type="text" id="searchTextInput" onKeyPress={this.handleKeyPress} />
+            <input type="text" id="searchTextInput" onKeyPress={this.handleKeyEnterPress} />
         </div>
         <div>         
           <SearchResultsGrid albums={this.state.albums } title={this.state.title} />

@@ -7,7 +7,7 @@ IF NOT EXISTS (SELECT 1 FROM SYSOBJECTS WHERE NAME ='Genres' AND XTYPE='U')
 BEGIN
 	CREATE TABLE [dbo].[Genres](
 		[Id] [int] IDENTITY(1,1) NOT NULL,
-		[Name] [nvarchar](250) NOT NULL,
+		[Name] [nvarchar](250) UNIQUE NOT NULL,
 	PRIMARY KEY CLUSTERED 
 	(
 		[Id] ASC

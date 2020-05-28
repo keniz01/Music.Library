@@ -7,7 +7,7 @@ IF NOT EXISTS (SELECT 1 FROM SYSOBJECTS WHERE NAME ='Records' AND XTYPE='U')
 BEGIN
 	CREATE TABLE [dbo].[Records](
 		[Id] [int] IDENTITY(1,1) NOT NULL,
-		[Title] [nvarchar](250) NOT NULL,
+		[Title] [nvarchar](250) UNIQUE NOT NULL,
 		[YearReleased] [int] NULL DEFAULT 0,
 		[Duration] [int] NULL DEFAULT 0,
 		[Position] [int] NULL DEFAULT 0,

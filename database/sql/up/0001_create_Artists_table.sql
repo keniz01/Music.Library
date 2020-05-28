@@ -7,7 +7,7 @@ IF NOT EXISTS (SELECT 1 FROM SYSOBJECTS WHERE NAME ='Artists' AND XTYPE='U')
 BEGIN
 	CREATE TABLE [dbo].[Artists](
 		[Id] [int] IDENTITY(1,1) NOT NULL,
-		[Name] [nvarchar](250) NOT NULL,
+		[Name] [nvarchar](250) UNIQUE NOT NULL,
 		[Website] [nvarchar](250) NULL,
 	PRIMARY KEY CLUSTERED 
 	(

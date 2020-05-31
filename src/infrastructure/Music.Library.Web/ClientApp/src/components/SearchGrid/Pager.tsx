@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import SearchAPI from './SearchAPI';
+import SearchAPI from '../Services/SearchAPI';
 
 interface IProps {
     itemsPerPage: number,

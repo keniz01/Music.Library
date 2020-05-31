@@ -1,4 +1,4 @@
-import Album from './Album';
+import Album from '../Shared/IAlbum';
 
 export default interface StateProps {
     albums: Album[],

@@ -1,25 +1,11 @@
 ﻿import React, { Component } from 'react';
-import Home from './Home';
-import Header from './Header';
-import SearchInput from './SearchInput';
-import Footer from './Footer';
-import SearchGrid from './SearchGrid';
-import Album from './Types/Album';
-
-interface IState {
-    data: {
-        response: Album[],
-        responseCount: number
-    },
-    query: string,
-    searching: boolean,
-    itemsPerPage: number,
-    pageNumber: number
-}
-
-interface IProps {
-    pageNumber: number
-}
+import Home from '../Home/Home';
+import Header from '../Shared/Header';
+import SearchInput from '../SearchInput/SearchInput';
+import Footer from '../Shared/Footer';
+import SearchGrid from '../SearchGrid/SearchGrid';
+import IProps from './IProps';
+import IState from './IState';
 
 export default class Layout extends Component<IProps, IState> {
     static displayName  = Layout.name

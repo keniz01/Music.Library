@@ -1,4 +1,4 @@
-export default interface Label {
+export default interface ILabel {
     id: number,
     name: string
 }

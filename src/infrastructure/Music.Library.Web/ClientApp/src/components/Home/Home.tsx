@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
-import StateProps from './Types/StateProps';
-import Albums from './Albums';
+import StateProps from './IProps';
 import DashBoard from './DashBoard';
+import Albums from './Albums';
 
 export default class Home extends Component<{}, StateProps> {
     static displayName = Home.name;

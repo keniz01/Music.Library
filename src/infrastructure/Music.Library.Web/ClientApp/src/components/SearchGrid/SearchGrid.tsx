@@ -1,16 +1,7 @@
 import React, {Component} from 'react';
-import Album from './Types/Album';
+import IProps from './IProps';
 import Pager from './Pager';
 
-interface IProps {
-    albums: Album[],
-    searchCount: number,
-    searchQuery: string,
-    itemsPerPage: number,
-    fetchItemsPerPageCount: any,
-    fetchPageNumber: any,
-    fetchSearchData: any
-}
 
 export default class SearchGrid extends Component<IProps> {
     static displayName = SearchGrid.name;
@@ -21,7 +12,6 @@ export default class SearchGrid extends Component<IProps> {
         this.fetchPageNumber = this.fetchPageNumber.bind(this);
         this.fetchSearchData = this.fetchSearchData.bind(this);
     }
-
 
     fetchPageNumber(pageNumber: number) {
         this.props.fetchPageNumber(pageNumber);       

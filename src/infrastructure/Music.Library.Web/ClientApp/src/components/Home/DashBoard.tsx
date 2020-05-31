@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
-import StateProps from './Types/StateProps';
+import IProps from './IProps';
 
-export default class DashBoard extends Component<StateProps> {
+export default class DashBoard extends Component<IProps> {
 
     headers() {
         return (

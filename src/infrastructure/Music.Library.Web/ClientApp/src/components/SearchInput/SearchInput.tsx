@@ -1,19 +1,7 @@
 ﻿import React, { Component } from 'react';
-import SearchAPI from './SearchAPI';
-
-interface IProps {
-    fetchSearchQuery: any,
-    fetchItemsPerPageCount: any,
-    fetchSearchData: any,
-    pageNumber: number
-}
-
-interface IState {
-    query: string, 
-    pageNumber: number,     
-    itemsPerPage: number,
-    data: any
-}
+import SearchAPI from '../Services/SearchAPI';
+import IProps from './IProps';
+import IState from './IState';
 
 export default class SearchInput extends Component<IProps, IState> {
 

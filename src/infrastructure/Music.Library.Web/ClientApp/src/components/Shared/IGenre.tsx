@@ -1,4 +1,4 @@
-export default interface Genre {
+export default interface IGenre {
     id: number,
     name: string
 }

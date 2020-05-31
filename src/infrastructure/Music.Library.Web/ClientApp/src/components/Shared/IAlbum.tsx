@@ -1,7 +1,7 @@
-import Label from './Label';
-import Genre from './Genre';
+import Label from './ILabel';
+import Genre from './IGenre';
 
-export default interface Album {
+export default interface IAlbum {
     artistName: string, 
     title: string, 
     duration: string, 

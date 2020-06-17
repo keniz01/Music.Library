@@ -4,10 +4,9 @@ import Header from '../Shared/Header';
 import SearchInput from '../SearchInput/SearchInput';
 import Footer from '../Shared/Footer';
 import SearchGrid from '../SearchGrid/SearchGrid';
-import IProps from './IProps';
 import IState from './IState';
 
-export default class Layout extends Component<IProps, IState> {
+export default class Layout extends Component<{}, IState> {
     static displayName  = Layout.name
 
     constructor(props: any){
@@ -52,7 +51,6 @@ export default class Layout extends Component<IProps, IState> {
             searchCount: this.state.data.responseCount,
             searchQuery: this.state.query,
             itemsPerPage: this.state.itemsPerPage,
-            fetchItemsPerPageCount: this.state.itemsPerPage,
             fetchPageNumber: this.fetchPageNumber,
             fetchSearchData: this.fetchSearchData
         }
@@ -62,7 +60,6 @@ export default class Layout extends Component<IProps, IState> {
                 <div className='d-flex justify-content-between'>
                     <Header />
                     <SearchInput 
-                        pageNumber={this.state.pageNumber}
                         fetchSearchData={this.fetchSearchData}
                         fetchSearchQuery={this.fetchSearchQuery}
                         fetchItemsPerPageCount={this.fetchItemsPerPageCount} />

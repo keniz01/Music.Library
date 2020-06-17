@@ -5,7 +5,7 @@ export default interface IProps {
     searchCount: number,
     searchQuery: string,
     itemsPerPage: number,
-    fetchItemsPerPageCount: any,
+    // fetchItemsPerPageCount: any,
     fetchPageNumber: any,
     fetchSearchData: any
 }

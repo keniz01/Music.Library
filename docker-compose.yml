@@ -1,0 +1,46 @@
+version: '3.8'
+
+networks:
+    app_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
+services:
+    sqlserver:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        ports:
+            - "1433:1433"
+        environment:
+            - SA_PASSWORD=P@55w0rd
+            - ACCEPT_EULA=Y
+            - MSSQL_PID=Developer
+        container_name: mssql
+        networks:
+            app_net:
+                ipv4_address: 172.28.1.2
+    api:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        image: keniz01/api
+        ports:
+            - "5000:80"
+        depends_on:
+            - sqlserver
+        container_name: api 
+        networks:
+            app_net:
+                ipv4_address: 172.28.1.3      
+    web:
+        build: './src/infrastructure/Music.Library.Web'
+        image: keniz01/web
+        stdin_open: true
+        ports:
+            - "3000:3000"
+        depends_on:
+            - api
+        container_name: web 
+        networks:
+            app_net:
+                ipv4_address: 172.28.1.4            

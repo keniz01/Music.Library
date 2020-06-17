@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import SearchAPI from '../Services/SearchAPI';
+import SearchServiceApi from '../Services/SearchServiceApi';
 import IProps from './IProps';
 import IState from './IState';
 
@@ -31,7 +31,7 @@ export default class SearchInput extends Component<IProps, IState> {
         this.setState({ itemsPerPage: itemsPerPage });
 
         if(this.state.query) {
-            SearchAPI.fetchSearchResults(this.state.query, 1, itemsPerPage)
+            SearchServiceApi.fetchSearchResults(this.state.query, 1, itemsPerPage)
                 .then(data => {
                     console.log('Data: ', data);
                     this.setState({ data: data }, this.props.fetchSearchData(data));
@@ -47,7 +47,7 @@ export default class SearchInput extends Component<IProps, IState> {
         
         if(isValidKeyCode) {            
             if(this.state.query) {                   
-                SearchAPI.fetchSearchResults(this.state.query, 1, this.state.itemsPerPage)
+                SearchServiceApi.fetchSearchResults(this.state.query, 1, this.state.itemsPerPage)
                     .then(data => {
                         this.setState({ data: data }, this.props.fetchSearchData(data));
                     });
@@ -68,7 +68,7 @@ export default class SearchInput extends Component<IProps, IState> {
                     id="searchTextInput" 
                     placeholder="Enter artist, album and/or track ..." />
 
-                <select value={this.state.itemsPerPage} onChange={this.handleItemsPerPage}>
+                <select value={this.state.itemsPerPage} onChange={this.handleItemsPerPage}>                   
                     <option value='10'>10</option>
                     <option value='20'>20</option>
                     <option value='30'>30</option>

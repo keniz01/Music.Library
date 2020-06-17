@@ -1,6 +1,6 @@
-export default (function SearchAPI() {
+export default (function() {
     const fetchSearchData = async (searchQuery: string, pageNumber: number, itemsPerPage: number) => {
-        const result = await fetch(`http://localhost:5000/api/search/${searchQuery}/${pageNumber}/${itemsPerPage}`)
+        return await fetch(`http://localhost:5000/api/search/${searchQuery}/${pageNumber}/${itemsPerPage}`)
             .then(response => {
     
                 if(!response.ok) {
@@ -9,8 +9,6 @@ export default (function SearchAPI() {
                 return response.json()
             })
             .catch(error => console.log(error));
-
-            return result;
     }
 
     return {

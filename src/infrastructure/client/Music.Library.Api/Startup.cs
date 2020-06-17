@@ -36,7 +36,7 @@ namespace Music.Library.Api
             services.AddScoped<ISearchRepository, SearchRepository>();
             services.AddScoped<IDashBoardRepository, DashBoardRepository>();
             services.AddDbContext<MusicDataContext>(service => service
-                .UseSqlServer(Configuration.GetConnectionString("Development"))
+                .UseSqlServer(Configuration.GetConnectionString("DatabaseContext"))
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 .EnableSensitiveDataLogging()
                 .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Debug))));

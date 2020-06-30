@@ -56,15 +56,17 @@ export default class Layout extends Component<{}, IState> {
         }
 
         return (
-            <div className='m-3'>
-                <div className='d-flex justify-content-between'>
+            <div className='content'>
+                <div className='header'>
                     <Header />
                     <SearchInput 
                         fetchSearchData={this.fetchSearchData}
                         fetchSearchQuery={this.fetchSearchQuery}
                         fetchItemsPerPageCount={this.fetchItemsPerPageCount} />
                 </div>
-                { this.state.searching ? <SearchGrid { ...searchGridProps } /> : <Home /> }
+                <div className="tabular-data">
+                    { this.state.searching ? <SearchGrid { ...searchGridProps } /> : <Home /> }
+                </div>                
                 <Footer />
             </div>
         )

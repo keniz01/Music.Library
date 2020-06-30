@@ -31,7 +31,7 @@ namespace Music.Library.Api.Controllers
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet("")]
-        public async Task<IActionResult> GetDashboardDetails(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetDashboardDetailsAsync(CancellationToken cancellationToken = default)
         {
             var albums = await _mediator
                 .Send(new GetDashBoardRequest(), cancellationToken)

@@ -52,13 +52,13 @@ export default class Albums extends Component<IProps> {
     render() {
         
         return (
-            <div id="albums-table-container">
+            <React.StrictMode>
                 { this.props.albums.length 
                     ? this.props.loading
                         ? <p><em>Loading...</em></p>
                         : this.table() 
                     : null }
-            </div>
+            </React.StrictMode>
         )
     }
 }

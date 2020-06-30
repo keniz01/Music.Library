@@ -31,7 +31,7 @@ export default class Home extends Component<{}, StateProps> {
     render() {
 
         return (
-            <div id="albums-table-container">
+            <div className="tabular-data">
                 <Albums { ...this.state } />
                 <DashBoard { ...this.state } />
             </div>

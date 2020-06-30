@@ -34,12 +34,12 @@ export default class Pager extends Component<IProps> {
         
         if(numberOfPages.length > 1) {
             return (
-                <div className="text-center">
-                    <ul className='list-inline'>
+                <div className="pager">
+                    <ul>
                         {numberOfPages.map(page => {
                             return (
-                                <li className='list-inline-item' key={page}>
-                                    <a className='text-decoration-none' href="#!" onClick={this.handleSelectedPage}> {page} </a>
+                                <li key={page}>
+                                    <a href="#!" onClick={this.handleSelectedPage}> {page} </a>
                                 </li>
                             )
                         })}                    

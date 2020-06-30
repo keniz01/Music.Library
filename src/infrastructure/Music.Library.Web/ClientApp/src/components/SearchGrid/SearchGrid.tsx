@@ -52,33 +52,39 @@ export default class SearchGrid extends Component<IProps> {
         )
     }
 
+    pager() {
+        return (
+            <Pager 
+                fetchSearchData={this.fetchSearchData}
+                searchQuery={this.props.searchQuery}
+                itemsPerPage={this.props.itemsPerPage} 
+                totalItems={this.props.searchCount}
+                fetchPageNumber={this.fetchPageNumber} />              
+        )
+    }
+
     table() {
         return (
             <React.StrictMode>
-                <div>
-                    Found {this.props.searchCount} {this.props.searchCount === 1 ? 'result' : 'results' } for "{this.props.searchQuery}""
-                </div>
-                <table id="albumTable" className='table table-striped' aria-labelledby="tabelLabel">
+                <table aria-labelledby="tabelLabel">
+                    <caption>
+                        Found {this.props.searchCount} {this.props.searchCount === 1 ? 'result' : 'results' } for "{this.props.searchQuery}""
+                    </caption>
                     <thead>
                         {this.headers()}
                     </thead>
                     <tbody>
                         {this.rows()}
                     </tbody>
-                </table>
+                </table>   
+                { this.pager() }           
             </React.StrictMode>
         )
     }    
     render() {
         return (           
-            <div>
+            <div className="paged-data">
                 { this.props.searchCount > 0 ? this.table() : null }
-                <Pager 
-                    fetchSearchData={this.fetchSearchData}
-                    searchQuery={this.props.searchQuery}
-                    itemsPerPage={this.props.itemsPerPage} 
-                    totalItems={this.props.searchCount}
-                    fetchPageNumber={this.fetchPageNumber} />
             </div>
         )
     }

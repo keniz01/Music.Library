@@ -59,11 +59,11 @@ export default class SearchInput extends Component<IProps, IState> {
 
     render() {
         return (
-            <div className='d-flex w-50 flex-grow'>
+            <div className='search'>
                 <input 
                     onKeyPress={ this.handleSubmit }
                     onChange={this.handleOnChange}
-                    className='w-100 pl-2 pr-2' 
+                    className='' 
                     type="text" 
                     id="searchTextInput" 
                     placeholder="Enter artist, album and/or track ..." />

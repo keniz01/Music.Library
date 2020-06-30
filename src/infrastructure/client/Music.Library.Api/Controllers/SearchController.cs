@@ -14,7 +14,7 @@ namespace Music.Library.Api.Controllers
         public SearchController(IMediator mediator) => _mediator = mediator;
 
         [HttpGet("{query}/{pageNumber}/{pageSize}")]
-        public async Task<IActionResult> GetAlbums(string query, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetAlbumsAsync(string query, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
         {
             var albums = await _mediator
                 .Send(new GetSearchRequest(query, pageNumber, pageSize), cancellationToken)
